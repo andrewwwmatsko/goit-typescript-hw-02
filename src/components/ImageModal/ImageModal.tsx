@@ -1,19 +1,27 @@
+import { useState, ReactElement } from "react";
 import Modal from "react-modal";
+
+import { Image } from "../../types";
 
 import { RiCloseLargeFill, RiStarLine, RiStarFill } from "react-icons/ri";
 
 import { formatDate } from "../../helpers/formatDate";
 
 import css from "./ImageModal.module.css";
-import { useState } from "react";
+
+interface Props {
+  isOpen: boolean;
+  onSetModal: (boolean: boolean) => void;
+  onAddToFav: (image: Image) => void;
+  imageData: Image;
+}
 
 export default function ImageModal({
   isOpen,
   onSetModal,
   onAddToFav,
   imageData,
-  removePhotoFromFav,
-}) {
+}: Props): ReactElement {
   const {
     created_at,
     description,
@@ -25,7 +33,7 @@ export default function ImageModal({
     alt_description,
   } = imageData;
 
-  const [isAdded, setIsAdded] = useState(false);
+  const [isAdded, setIsAdded] = useState<boolean>(false);
 
   const customStyles = {
     overlay: {
@@ -41,15 +49,15 @@ export default function ImageModal({
     },
   };
 
-  const onCloseModal = () => {
+  const onCloseModal = (): void => {
     onSetModal(false);
   };
 
-  const handleBodyClassRemove = () => {
+  const handleBodyClassRemove = (): void => {
     document.body.classList.remove("ReactModal__Body--open");
   };
 
-  const handleAddToFav = () => {
+  const handleAddToFav = (): void => {
     if (isAdded) {
       setIsAdded(false);
       //logic for removal

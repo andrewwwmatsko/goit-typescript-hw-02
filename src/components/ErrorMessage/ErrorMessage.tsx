@@ -1,7 +1,9 @@
+import { ReactElement } from "react";
+
 import css from "./ErrorMessage.module.css";
 import img from "../../images/9170816.jpg";
 
-export default function ErrorMessage() {
+export default function ErrorMessage(): ReactElement {
   return (
     <div className={css.container}>
       <img

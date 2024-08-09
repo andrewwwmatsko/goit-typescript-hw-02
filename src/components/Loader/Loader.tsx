@@ -1,6 +1,8 @@
+import { ReactElement } from "react";
+
 import GridLoader from "react-spinners/GridLoader";
 
-export default function Loader() {
+export default function Loader(): ReactElement {
   const override = {
     display: "block",
     margin: "0 auto",

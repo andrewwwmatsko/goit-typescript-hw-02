@@ -1,6 +1,15 @@
+import { ReactElement } from "react";
+
+import { Image } from "../../types";
+
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ image, openModal }) {
+interface Props {
+  image: Image;
+  openModal: (image: Image) => void;
+}
+
+export default function ImageCard({ image, openModal }: Props): ReactElement {
   const handleClick = () => {
     openModal(image);
   };

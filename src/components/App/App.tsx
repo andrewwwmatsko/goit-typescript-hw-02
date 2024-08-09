@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 
 import toast, { Toaster } from "react-hot-toast";
 
 import { fetchPhotos } from "../../unsplash-api";
 
-import css from "./App.module.css";
+import { Image } from "../../types";
 
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -14,7 +14,9 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import Welcome from "../Welcome/Welcome";
 
-const notify = () =>
+import css from "./App.module.css";
+
+const notify: () => void = () =>
   toast.error("There are no photos yet.", {
     duration: 2000,
     style: {
@@ -28,43 +30,43 @@ const notify = () =>
     },
   });
 
-const notifyWhenAddedToFav = () => toast.success("Successfully toasted!");
+const notifyWhenAddedToFav: () => void = () =>
+  toast.success("Successfully toasted!");
 
-export default function App() {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function App(): ReactElement {
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const [photos, setPhotos] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [photos, setPhotos] = useState<Image[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalData, setModalData] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<Image | null>(null);
 
-  const [favourites, setFavourites] = useState([]);
-  const [isFavOpen, setIsFavOpen] = useState(false);
-  // const [photoIdToRemove, setPhotoIdToRemove] = useState(null);
+  const [favourites, setFavourites] = useState<Image[]>([]);
+  const [isFavOpen, setIsFavOpen] = useState<boolean>(false);
 
-  const getImages = (query) => {
+  const getImages = (query: string): void => {
     setPhotos([]);
     setCurrentPage(1);
     setSearchQuery(query);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleAddToFav = (newFav) => {
-    setFavourites((prevFav) => {
+  const handleAddToFav = (newFav: Image): void => {
+    setFavourites((prevFav: Image[]) => {
       return [...prevFav, newFav];
     });
     notifyWhenAddedToFav();
   };
 
-  const handleShowFav = () => {
+  const handleShowFav = (): void => {
     setPhotos(favourites);
     setIsFavOpen(true);
     if (photos.length === 0) {
@@ -73,7 +75,7 @@ export default function App() {
     }
   };
 
-  const openModal = (image) => {
+  const openModal = (image: Image): void => {
     setModalData(image);
     setIsModalOpen(true);
   };
