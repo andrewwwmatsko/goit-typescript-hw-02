@@ -1,7 +1,7 @@
 import { useState, ReactElement } from "react";
 import Modal from "react-modal";
 
-import { Image } from "../../types";
+import { Image, ModalData } from "../../types";
 
 import { RiCloseLargeFill, RiStarLine, RiStarFill } from "react-icons/ri";
 
@@ -13,7 +13,7 @@ interface Props {
   isOpen: boolean;
   onSetModal: (boolean: boolean) => void;
   onAddToFav: (image: Image) => void;
-  imageData: Image;
+  imageData: ModalData;
 }
 
 export default function ImageModal({
@@ -21,7 +21,11 @@ export default function ImageModal({
   onSetModal,
   onAddToFav,
   imageData,
-}: Props): ReactElement {
+}: Props): ReactElement | null {
+  if (!imageData) {
+    return null;
+  }
+
   const {
     created_at,
     description,

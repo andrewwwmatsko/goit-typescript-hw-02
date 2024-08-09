@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { fetchPhotos } from "../../unsplash-api";
 
-import { Image } from "../../types";
+import { Image, ModalData } from "../../types";
 
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -44,7 +44,7 @@ export default function App(): ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalData, setModalData] = useState<Image | null>(null);
+  const [modalData, setModalData] = useState<ModalData>(null);
 
   const [favourites, setFavourites] = useState<Image[]>([]);
   const [isFavOpen, setIsFavOpen] = useState<boolean>(false);

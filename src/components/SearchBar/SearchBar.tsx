@@ -1,6 +1,6 @@
 import { FormEvent, ReactElement } from "react";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import { RiSearchLine } from "react-icons/ri";
 import { RiStarFill } from "react-icons/ri";

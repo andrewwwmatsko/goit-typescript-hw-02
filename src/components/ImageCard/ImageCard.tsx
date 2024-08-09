@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ImageCard({ image, openModal }: Props): ReactElement {
-  const handleClick = () => {
+  const handleClick = (): void => {
     openModal(image);
   };
   return (

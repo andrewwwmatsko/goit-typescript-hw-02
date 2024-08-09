@@ -19,3 +19,5 @@ export interface Image {
 type Tag = {
   title: string;
 };
+
+export type ModalData = Image | null;
